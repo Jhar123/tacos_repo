@@ -38,7 +38,7 @@ SELECT DISTINCT -- remove duplicates
     year,
     
     -- replace nulls
-    COALESCE(make, 'Custom') AS make,
+    INITCAP(TRIM(COALESCE(make, 'Custom'))) AS make,
     
     -- trim blank space
     TRIM(model) AS model,
