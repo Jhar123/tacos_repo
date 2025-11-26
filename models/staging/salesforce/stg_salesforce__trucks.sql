@@ -38,7 +38,11 @@ SELECT DISTINCT -- remove duplicates
     year,
     
     -- replace nulls
-    INITCAP(TRIM(COALESCE(make, 'Custom'))) AS make,
+    CASE
+        WHEN LOWER(TRIM(make)) IN ('citroën', 'citroã«n') THEN 'Citroen'
+        ELSE INITCAP(TRIM(COALESCE(make, 'Custom')))
+    END AS make,
+
     
     -- trim blank space
     TRIM(model) AS model,
